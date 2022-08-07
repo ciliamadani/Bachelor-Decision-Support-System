@@ -1,0 +1,152 @@
+import pickle
+import pandas as pd 
+import logging
+
+## loading models
+model1=pickle.load(open('orientationSystem/model/models/final_model1.sav','rb+'))
+model2=pickle.load(open('orientationSystem/model/models/final_model2.sav','rb+'))
+model3=pickle.load(open('orientationSystem/model/models/final_model3.sav','rb+'))
+## loading encoders
+encoder1 = pickle.load(open('orientationSystem/model/encoders/encoder1.sav','rb+'))
+encoder2 = pickle.load(open('orientationSystem/model/encoders/encoder2.pkl','rb+'))
+encoder3 = pickle.load(open('orientationSystem/model/encoders/encoder3.pkl','rb+'))
+
+def prepModel1(dictionnary):
+    """
+    input : ditionnary of student info 
+    output: model predctions  
+    """
+
+    ## dataframe row created 
+    testdata=pd.DataFrame({'x':temp}).transpose()
+    
+    ## turn the 10 first six choices into binary data for first model 
+
+    ## Normalisation moyenne bac
+    pass
+
+    ## MODEL1 ######################################################################    
+    ## map intferface code to model codes 
+    encoder1 = pickle.load(open('orientationSystem/model/encoders/encoder1.sav','rb+'))
+    testdatafinal = testdata[['c1','c2', 'c3', 'c4', 'c5', 'c6']].apply(encoder1.transform)
+    
+    ## map some choices to OTHs
+    outputsModel1= [0,1,2,3,4,6]
+    row =  [10]
+    for i in range(1,6):
+        if(testdatafinal['c'+i]) in outputsModel1:
+            row.append(temp['c'+i])
+        else:
+            row.append(5)
+    logging.debug(row)
+    ## turning codes into binary vector 
+
+    l = testdatafinal[['c1', 'c2', 'c3', 'c4', 'c5','c6']].astype(int).values.flatten().tolist()
+    l = [x-1 for x in l]
+    m = np.zeros(7)
+    m[l] = 1
+
+    testdata=[]
+    testdata.append(temp['moy'])
+    for i in m:
+        testdata.append(i)
+
+    logging.debug("fnal")
+    logging.debug(testdata)
+    result1 =model.predict(testdata)
+
+    return result1
+
+
+def prepModel2(temp):
+
+    
+    ## dataframe row created 
+    testdata=pd.DataFrame({'x':temp}).transpose()
+    
+    ## turn the 10 first six choices into binary data for first model 
+
+    ## Normalisation moyenne bac
+    pass
+
+    ## MODEL2 ######################################################################    
+    ## map intferface code to model codes 
+    encoder2 = pickle.load(open('orientationSystem/model/encoders/encoder2.sav','rb+'))
+    testdatafinal = testdata[['c1','c2', 'c3', 'c4', 'c5', 'c6']].apply(encoder1.transform)
+    
+    ## map some choices to OTHs
+    outputsModel2= [ 6, 12,  1,  2,  5,  4,  8,  0, 11,  9, 10,  3]
+    row =  [10]
+    for i in range(1,13):
+        if(testdatafinal['c'+i]) in outputsModel1:
+            row.append(temp['c'+i])
+        else:
+            row.append(7)
+    logging.debug(row)
+
+    ## turning codes into binary vector 
+
+    l = testdatafinal[['c1', 'c2', 'c3', 'c4', 'c5','c6']].astype(int).values.flatten().tolist()
+    l = [x-1 for x in l]
+    m = np.zeros(13)
+    m[l] = 1
+
+    testdata=[]
+    testdata.append(temp['moy'])
+    for i in m:
+        testdata.append(i)
+
+    logging.debug("fnal")
+    logging.debug(testdata)
+    result2 =model2.predict(testdata)
+
+    return result2
+
+
+def prepModel3():
+
+    ## dataframe row created 
+    testdata=pd.DataFrame({'x':temp}).transpose()
+    
+    ## turn the 10 first six choices into binary data for first model 
+
+    ## Normalisation moyenne bac
+    pass
+
+    ## MODEL3 ######################################################################    
+    ## map intferface code to model codes 
+    encoder3 = pickle.load(open('orientationSystem/model/encoders/encoder2.sav','rb+'))
+    testdatafinal = testdata[['c1','c2', 'c3', 'c4', 'c5', 'c6']].apply(encoder1.transform)
+    
+    ## map some choices to OTHs
+    outputsModel3= [20, 28, 30, 12, 40, 53,  7, 50, 37,  4, 24, 25, 13,  5, 26, 49, 54,
+       43, 21, 23, 39, 47, 42, 36, 17, 41, 35, 51,  6, 18,  2, 38,  8, 14,
+       46, 27, 11, 22, 19,  1, 15, 16, 32,  3, 52, 33, 44,  0, 29, 34,
+       48, 45,  9, 10]
+
+    row =  [10]
+    for i in range(1,13):
+        if(testdatafinal['c'+i]) in outputsModel1:
+            row.append(temp['c'+i])
+        else:
+            row.append(31)
+    logging.debug(row)
+
+    ## turning codes into binary vector 
+
+    l = testdatafinal[['c1', 'c2', 'c3', 'c4', 'c5','c6']].astype(int).values.flatten().tolist()
+    l = [x-1 for x in l]
+    m = np.zeros(55)
+    m[l] = 1
+
+    testdata=[]
+    testdata.append(temp['moy'])
+    for i in m:
+        testdata.append(i)
+
+    logging.debug("fnal")
+    logging.debug(testdata)
+    result3 =model3.predict(testdata)
+
+
+    return result3

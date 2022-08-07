@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="index.js" type="text/javascript" defer></script>
+
+    <title>Evaluation</title>
+</head>
+
+
+<body>
+  
+<div class="container">
+
+
+    <!-- NAV -----------------------------------------------------------------------------> 
+    <main-header></main-header>
+
+
+    <div class="row" style=" margin-bottom: 5%;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light"  >
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item ">
+                  <a class="nav-link" href="#">Profile <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Choix</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Recommendation</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Aide</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+    </div>
+    
+    <div style="margin:auto ;width: 65%;">
+    <!-- CONTENT --------------------------------------------------------------------------> 
+        <div class="row" >
+            <div class="col">
+
+                <div class="container text-center" style="background-color: rgba(0, 0, 0, 0.05);; height: 24px;"> 
+                    <h6>Veuillez remplire vos 10 choix par ordre descendant</h6>
+                </div>            
+                     
+                <div class="container text-center", style="margin: auto;" >
+                <!--
+                <script>
+                container = document.getElementById('inputs_container');
+                    for (i = 0; i < 10; i++) {
+                    container.innerHTML += '<div class="d-flex justify-content-center justify-content-sm-arround p-1 "><input type="text"><p><u>Proba </u></p><i class="fas fa-accessible-icon"></i></div>';
+                    }
+                    </script>
+                    -->
+                    
+                <br>
+                <form  action=""  method="post"  id="formulaire" style="width: 300px; margin: auto; margin-left: 20%; background-color: rgba(0, 0, 0, 0.05);;" >
+
+                        {% csrf_token %}
+                        <table>
+                        {{ form.as_table }}
+                        </table>
+
+                        <br>
+
+                        <div class="evaluation">
+
+                            <button type="Submit" value="YourValue" name="NameOfYourButton">Evaluer</button>  
+
+                            <a href="#" class="btn btn-primary-disabled btn-sm" role="button">
+                                Reordonner
+                            </a>
+
+
+                        </div>
+                    
+            </form>
+
+            </div>
+            
+                     
+                      
+
+                 
+            </div>
+            <div class="col-4  container text-center"  >
+                <div class="container text-center" style="background-color: rgba(0, 0, 0, 0.05); height: 24px;">
+              
+                  <h6> Chances d'acceptation</h6>
+                 
+                  <!--
+                  <div class="col"> <b>Probabilite</b></div>
+                  <div class="col"> <b>d'acceptation</b></div>
+                  -->
+                </div>
+
+                <br>
+                <div class="container text-center"   >
+                  <table id="resultsDiv" style="width: 200px;">
+                    <tr>
+                      <th>M1</th>
+                      <th>M2</th>
+                      <th>M3</th>
+                    </tr>
+                    <tr>
+                      <td>{{resultModel1.0}}</td>
+                      <td>{{resultModel2.0}}</td>
+                      <td>{{resultModel3.0}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{resultModel1.1}}</td>
+                      <td>{{resultModel2.1}}</td>
+                      <td>{{resultModel3.1}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{resultModel1.2}}</td>
+                      <td>{{resultModel2.2}}</td>
+                      <td>{{resultModel3.2}}</td>
+                    </tr>                    <tr>
+                      <td>{{resultModel1.3}}</td>
+                      <td>{{resultModel2.3}}</td>
+                      <td>{{resultModel3.3}}</td>
+                    </tr>
+
+                  </table>
+
+                </div>
+            </div>
+      
+                        
+           
+            <!-- 11x2 GRID SYSTEM to display results-->
+                <script>
+                    
+       //             container = document.getElementById('resultsDiv');
+                   // container.innerHTML +='<tr><th>M</th><th>M</th><th>M</th><th>M</th><th>M</th><th>M</th></tr>';
+     //               for (i = 0; i < 11; i++) {
+   //                   container.innerHTML +='<tr>'; 
+ //                     for (j = 0; j < 6; j++)
+         //             {
+//                        container.innerHTML +='<td>data</td>';
+             //         }
+//                      container.innerHTML +='</tr>';
+//                    container.innerHTML += '<div class="row" style="height:30px;"> <div class="col"><b> 0.0000 <b></div> <div class="col"> <img src="https://img.icons8.com/color/48/000000/empty-flag.png" width="20px" height="30px"/> </div> </div>';
+           //         }
+                </script>
+        
+
+        </div>
+    
+    </div>
+
+        <!-- FOOTER -----------------------------------------------------------------------------> 
+        <div class="row">
+            <footer class="container text-center text-lg-start bg-light text-muted" style="border-radius: 20px; margin-top: 20px;">
+            <!-- Section: Social media -->
+            <section
+              class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+            >
+      
+          
+              <!-- Right -->
+              <div>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+              <!-- Right -->
+            </section>
+            <!-- Section: Social media -->
+          
+            <!-- Section: Links  -->
+            <section class="">
+              <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                  <!-- Grid column -->
+                  <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                      <i class="fas fa-gem me-3"></i>Lorem 
+                    </h6>
+                    <p>
+                       Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </p>
+                  </div>
+                  <!-- Grid column -->
+          
+                  
+                  <!-- Grid column -->
+          
+                  <!-- Grid column -->
+                  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                      Liens Utiles
+                    </h6>
+                    <p>
+                      <a href="#!" class="text-reset">Aide</a>
+                    </p>
+                  </div>
+                  <!-- Grid column -->
+          
+                  <!-- Grid column -->
+                  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                      Contact
+                    </h6>
+                    <p><i class="fas fa-home me-3"></i> Adresse , ALG</p>
+                    <p>
+                      <i class="fas fa-envelope me-3"></i>
+                      info@example.com
+                    </p>
+                    <p><i class="fas fa-phone me-3"></i> + 00 000 00 00C</p>
+                  </div>
+                  <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+              </div>
+            </section>
+            <!-- Section: Links  -->
+          
+            <!-- Copyright -->
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+              © 2022 Copyright:
+              <a class="text-reset fw-bold" href=#>site.com</a>
+            </div>
+            <!-- Copyright -->
+          </footer>
+      
+          </div>
+        
+        <main-footer></main-footer>
+        
+
+    </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
