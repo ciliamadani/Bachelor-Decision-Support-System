@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet"   href= "{% static 'bootstrap-5.2.0-beta1-dist\css\bootstrap.min.css' %}">  
+    <link rel="stylesheet" href="{% static 'profile.css' %}">  
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        {% csrf_token %}
+        <div class="main">
+            <div class="topbar">
+                <a href=""> Profile</a> 
+                <a href=""> Choix</a>
+                <a href="/form"> Système d'orientation</a> 
+                <a href=""> connecter / déconnecter</a>
+                
+            </div>
+        <div class="row">
+
+                <div class="col-md-8 mt-1">
+                    <div class="card mb-3 content">
+                        <h1 class="m-3 p-3"> Information </h1>
+                        <div class="card-body">
+                                 
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h5>Matricule</h5> 
+                                        </div>
+                                        <div class="col-md-9 text-secondary">
+                                           {{ matricule}}
+                                        </div>
+                                    </div>
+                            <br>       
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>moyenne du bac</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                   {{ moyenne_bac}}
+                                </div>
+                            </div>
+                    <br>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h5>Serie Bac</h5> 
+                                        </div>
+                                        <div class="col-md-9 text-secondary">
+                                        
+                                            {{serie_bac}}
+                                        </div>
+                                    </div>
+                            <br>       
+
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h5>Année Bac</h5> 
+                                        </div>
+                                        <div class="col-md-9 text-secondary">
+                                            {{annee_bac}}
+                                        </div>
+                                    </div>
+                            <br>        
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>sexe</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{sexe}}
+                                </div>
+                            </div>
+                            <br>        
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>english</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{english}}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>french</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{french}}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>his_geo</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{his_geo}}
+                                </div>
+                            </div>
+                            <br>  
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>arabic_literature</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{arabic_literature}}
+                                </div>
+                            </div>  
+                            <br>  
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>maths</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{maths}}
+                                </div>
+                            </div>  
+                            <br>  
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>philosophy</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{philosophy}}
+                                </div>
+                            </div>  
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>physics</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{physics}}
+                                </div>
+                            </div>  
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>primary_module</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{primary_module}}
+                                </div>
+                            </div>  
+                            <br>    
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>islamic_science</h5> 
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{islamic_science}}
+                                </div>
+                            </div>  
+                            <br>   
+                        </div>    
+                    </div>
+
+                </div>  
+
+            </div> 
+        </div>
+
+    </div>
+</body>
+</html>

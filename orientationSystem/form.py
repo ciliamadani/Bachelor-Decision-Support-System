@@ -3,7 +3,7 @@ from .choices import read_choices, read_label_choices
 
 ## read labels/codes dictionnary  
 
-codesDict = read_label_choices() ['formation']
+codesDict = read_label_choices() 
 choices =read_choices()
 
 CODE_CHOICES= []
@@ -11,9 +11,7 @@ for key,value in codesDict.items():
     CODE_CHOICES.append((key, str(value).capitalize()))
 
 
-   
-class NameForm(forms.Form):
-    
+class NameForm(forms.Form):    
     choice1 = forms.CharField(label='1er Choix', max_length=100, widget=forms.Select(choices=CODE_CHOICES, attrs={'style': 'width:120px'}))
     choice2 = forms.CharField(label='2eme Choix', max_length=100, widget=forms.Select(choices=CODE_CHOICES, attrs={'style': 'width:120px'}))
     choice3 = forms.CharField(label='3eme Choix', max_length=100, widget=forms.Select(choices=CODE_CHOICES, attrs={'style': 'width:120px'}))
