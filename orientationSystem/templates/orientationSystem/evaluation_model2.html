@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="index.js" type="text/javascript" defer></script>
+
+    <title>Evaluation</title>
+</head>
+
+
+<body>
+  
+<div class="container">
+
+    <!------------------------- MENU -----------------------
+    <main-header></main-header>
+    ------------------------- MENU ----------------------->
+     <!-- NAV -----------------------------------------------------------------------------> 
+     <main-header></main-header>
+
+
+     <div class="row" style=" margin-bottom: 5%; background-color: #009579;" > 
+         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #009579;"  >
+             <a class="navbar-brand" href="#"></a>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav">
+                 <li class="nav-item ">
+                   <a class="nav-link" href="#" style="color: white;">Profile <span class="sr-only">(current)</span></a>
+                 </li>
+                 <li class="nav-item ">
+                   <a class="nav-link" href="/orientationSystem/form" style="color: white;">Choix Etudiant</a>
+                 </li>
+                 <li class="nav-item active">
+                   <a class="nav-link" href="predict2" style="color: white;">Formations par type </a>
+                 </li>
+                 <li class="nav-item">
+                   <a class="nav-link disabled" href="#" style="color: white;">Deconnecter</a>
+                 </li>
+               </ul>
+             </div>
+           </nav>
+     </div>
+
+    <div class="row" style="margin-bottom: 2
+    0px;">
+
+        <h5>Type reseau de formation: </h1>
+
+          <form action="" method="POST">
+          {% csrf_token %}
+        <select name="typeForm">
+            <option value="ens" selected > ENS </option>
+            <option value="prepa"> Prepa</option>
+            <option value="med"> Med</option>
+            <option value="formSup"> Form Sup</option>
+            <option value="formUniv"> Form Univ</option>
+        </select>
+         <input type="submit" value="Select" > 
+
+        </form>
+    </div>
+
+
+    <!----  style=" background-color: rgba(27, 88, 51, 0.801)"-->
+    <div class="row" >
+
+      <!---- style="background-color: rgba(218, 199, 199, 0.5);"-->
+        <div class="col" , id="tableCol">
+          <script type="text/javascript">
+
+            function GenerateTable() {
+                //Build an array containing Customer records.
+                
+                var customers = new Array();
+                customers.push(["Classe", "Proba"]);
+
+                var rslts = '{{ result|escapejs }}'; 
+                
+
+                var classes = '{{ classes|escapejs }}';
+                
+                rslts = rslts.replace(/[\])}[{(]/g, '');
+                classes = classes.replace(/[\])}[{(]/g, '');
+                rslts = rslts.replace(/\s\s+/g, ' ');
+                classes = classes.replace(/\s\s+/g, ' ');
+
+                //alert(rslts);
+                //alert(classes);
+
+
+                const myArray1 = rslts.split(" ");
+                const myArray2 = classes.split(",");
+
+                                // ordonner les resultats 
+
+                function sortTogether(array1, array2) {
+                var merged = [];
+                  for(var i=0; i<array1.length; i++) { merged.push({'a1': array1[i], 'a2': array2[i]}); }
+                        merged.sort(function(o1, o2) { return ((o1.a1 > o2.a1) ? -1 : ((o1.a1 == o2.a1) ? 0 : 1)); });
+                        for(var i=0; i<merged.length; i++) { array1[i] = merged[i].a1; array2[i] = merged[i].a2; }
+                    }
+
+                  sortTogether(myArray1, myArray2); // simply call the function
+
+                  //alert('sort')
+                  //alert(myArray1)
+                  //alert(myArray2)
+                    
+                // fin ordonnecement
+
+
+                //alert(myArray1[0])
+                //customers.push([1, myArray[]]);
+                //customers.push([2, '{{ rslts.1 }}']);
+
+                for (var i = 0; i < myArray2.length; i++) 
+                
+                { 
+                //rsltname = "{{ rslts. }}";
+                //classname = "{{ classes.0 }}";
+                //customers.push(classname,rsltname); 
+                customers.push([myArray2[i],myArray1[i]]); 
+                }
+                
+
+         
+                //Create a HTML Table element.
+                var table = document.createElement("TABLE");
+                table.className = 'table';
+                //table.border = "3";
+         
+                //Get the count of columns.
+                var columnCount = customers[0].length;
+         
+                //Add the header row.
+                var row = table.insertRow(-1);
+                for (var i = 0; i < columnCount; i++) {
+                    var headerCell = document.createElement("TH");
+                    headerCell.innerHTML = customers[0][i];
+                    row.appendChild(headerCell);
+                }
+         
+                //Add the data rows.
+                for (var i = 1; i < customers.length; i++) {
+                    row = table.insertRow(-1);
+                    for (var j = 0; j < columnCount; j++) {
+                        var cell = row.insertCell(-1);
+                        cell.innerHTML = customers[i][j];
+                    }
+                }
+         
+                var tableCol = document.getElementById("tableCol");
+                tableCol.innerHTML = "";
+                tableCol.appendChild(table);
+
+              
+            }
+            window.onload = GenerateTable;
+        </script>
+        
+        <hr />
+
+        </div>
+
+
+        <div class="col">
+
+           
+        </div>
+
+    </div>
+
+    </div>
+
+
+    <!------------------------- FOOTER -----------------------
+    <main-footer></main-footer>
+    ------------------------- FOOTER ----------------------->
+            <!-- FOOTER -----------------------------------------------------------------------------> 
+            <div class="row">
+              <footer class="container text-center text-lg-start bg-light text-muted" style="border-radius: 20px; margin-top: 20px;">
+              <!-- Section: Social media -->
+              <section
+                class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+              >
+        
+            
+                <!-- Right -->
+                <div>
+                  <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                  </a>
+                  <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+                <!-- Right -->
+              </section>
+              <!-- Section: Social media -->
+            
+              <!-- Section: Links  -->
+              <section class="">
+                <div class="container text-center text-md-start mt-5">
+                  <!-- Grid row -->
+                  <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                      <!-- Content -->
+                      <h6 class="text-uppercase fw-bold mb-4">
+                        <i class="fas fa-gem me-3"></i>Lorem 
+                      </h6>
+                      <p>
+                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      </p>
+                    </div>
+                    <!-- Grid column -->
+            
+                    
+                    <!-- Grid column -->
+            
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                      <!-- Links -->
+                      <h6 class="text-uppercase fw-bold mb-4">
+                        Liens Utiles
+                      </h6>
+                      <p>
+                        <a href="#!" class="text-reset">Aide</a>
+                      </p>
+                    </div>
+                    <!-- Grid column -->
+            
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                      <!-- Links -->
+                      <h6 class="text-uppercase fw-bold mb-4">
+                        Contact
+                      </h6>
+                      <p><i class="fas fa-home me-3"></i> Adresse , ALG</p>
+                      <p>
+                        <i class="fas fa-envelope me-3"></i>
+                        info@example.com
+                      </p>
+                      <p><i class="fas fa-phone me-3"></i> + 00 000 00 00C</p>
+                    </div>
+                    <!-- Grid column -->
+                  </div>
+                  <!-- Grid row -->
+                </div>
+              </section>
+              <!-- Section: Links  -->
+            
+              <!-- Copyright -->
+              <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                © 2022 Copyright:
+                <a class="text-reset fw-bold" href=#>site.com</a>
+              </div>
+              <!-- Copyright -->
+            </footer>
+        
+            </div>
+          
+
+    </div>
+
+    </body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+</html>
