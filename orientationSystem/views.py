@@ -7,7 +7,7 @@ import pickle
 from .form import NameForm
 import logging
 import numpy as np
-from .choices import prepModel1,prepModel2,prepModel3, prepModel4, prepModel5 , read_label_choices
+from .choices import prepModel_ENS, prepModel_MED, prepModel_FormUniv, prepModel_FormSup, prepModel_Prepa, read_label_choices, prepModel1, prepModel2, prepModel3, prepModel4, prepModel5
 
 choices =read_label_choices()
 CODE_CHOICES= []
@@ -48,6 +48,41 @@ def get_name(request):
             logging.debug("VALIIIID.....................")"""
     ##if request.method =='POST':   
     if request.POST.get('NameOfYourButton') == 'YourValue':
+
+
+                ## save form using a session 
+        #request.session.save()
+        request.session["c1"] = str(request.POST.get('choice1'))  
+        request.session["c2"] =str(request.POST.get('choice2')) 
+        request.session["c3"] =str(request.POST.get('choice3')) 
+        request.session["c4"] = str(request.POST.get('choice4')) 
+        request.session["c5"] = str(request.POST.get('choice5')) 
+        request.session["c6"] = str(request.POST.get('choice6')) 
+        request.session["c7"] = str(request.POST.get('choice7'))  
+        request.session["c8"] = str(request.POST.get('choice8')) 
+        request.session["c9"] = str(request.POST.get('choice9')) 
+        request.session["c10"] = str(request.POST.get('choice10')) 
+        request.session.modified = True
+
+
+        c1 = request.session.get("c1")
+        c2 = request.session.get("c2")
+        c3 = request.session.get("c3")
+        c4 = request.session.get("c4")
+        c5 = request.session.get("c5")
+        c6 = request.session.get("c6")
+        c7 = request.session.get("c7")
+        c8 = request.session.get("c8")
+        c9 = request.session.get("c9")
+        c10 = request.session.get("c10")
+
+        """        ## test session
+                logging.debug("TESTING THE SESSION2")
+                logging.debug(c1)
+                logging.debug(c2)
+                logging.debug(c3)
+                logging.debug("END OF TESTING THE SESSION2")"""
+
         print('user clicked button')  
         logging.debug("LOADING MODEL")
         #model=pickle.load(open('orientationSystem/model/finalized_model.sav','rb+'))
@@ -271,12 +306,12 @@ def get_name(request):
                 }
         
         ## orginal: result.html
-        return render(request,'evaluation.html', context)
+        return render(request,'evaluation_model1.html', context)
 
 
             
 
-    return render(request, 'evaluation.html', {'form': form})
+    return render(request, 'evaluation_model1.html', {'form': form})
 
 
 
@@ -284,6 +319,41 @@ def get_name(request):
 def predict(request):
     
     if request.method =='POST':   
+        ## save form using a session 
+        request.session.save()
+        request.session["c1"] = temp['c1']=str(request.POST.get('choice1'))  
+        request.session["c2"] = temp['c2']=str(request.POST.get('choice2')) 
+        request.session["c3"] = temp['c3']=str(request.POST.get('choice3')) 
+        request.session["c4"] = temp['c4']=str(request.POST.get('choice4')) 
+        request.session["c5"] = temp['c5']=str(request.POST.get('choice5')) 
+        request.session["c6"] = temp['c6']=str(request.POST.get('choice6')) 
+        request.session["c7"] = temp['c7']=str(request.POST.get('choice7'))  
+        request.session["c8"] = temp['c8']=str(request.POST.get('choice8')) 
+        request.session["c9"] = temp['c9']=str(request.POST.get('choice9')) 
+        request.session["c10"] = temp['c10']=str(request.POST.get('choice10')) 
+        request.session.modified = True
+
+
+        c1 = request.session.get("c1")
+        c2 = request.session.get("c2")
+        c3 = request.session.get("c3")
+        c4 = request.session.get("c4")
+        c5 = request.session.get("c5")
+        c6 = request.session.get("c6")
+        c7 = request.session.get("c7")
+        c8 = request.session.get("c8")
+        c9 = request.session.get("c9")
+        c10 = request.session.get("c10")
+
+        ## test session
+        logging.debug("TESTING THE SESSION2")
+        logging.debug(c1)
+        logging.debug(c2)
+        logging.debug(c3)
+        logging.debug("END OF TESTING THE SESSION2")
+
+
+
         logging.debug("LOADING MODEL")
         #model=pickle.load(open('orientationSystem/model/finalized_model.sav','rb+'))
         temp={}
@@ -434,4 +504,191 @@ def predict(request):
                 }
         
         ## orginal: result.html
-        return render(request,'evaluation.html', context)
+
+        return render(request,'evaluation_model1.html', context)
+
+
+def diplayVis(request):
+
+
+    ## get dropdown list value 
+
+    c1 = request.session.get("c1")
+    c2 = request.session.get("c2")
+    c3 = request.session.get("c3")
+    c4 = request.session.get("c4")
+    c5 = request.session.get("c5")
+    c6 = request.session.get("c6")
+    c7 = request.session.get("c7")
+    c8 = request.session.get("c8")
+    c9 = request.session.get("c9")
+    c10 = request.session.get("c10")
+
+    ## test session
+    logging.debug("TESTING THE SESSION")
+    logging.debug(c1)
+    logging.debug(c2)
+    logging.debug(c3)
+    logging.debug(c5)
+    logging.debug(c6)
+    logging.debug(c7)
+    logging.debug("END OF TESTING THE SESSION")
+
+
+    ## check the value of drop list 
+    pass
+    pass
+    pass
+
+
+    temp={}
+    temp['c1']=str(c1)
+    logging.debug(temp['c1'])
+    temp['c2']=str(c2)
+    logging.debug(temp['c2'])
+    temp['c3']=str(c3)
+    temp['c4']=str(c4)
+    temp['c5']=str(c5)
+    temp['c6']=str(c6)
+    temp['c7']=str(c7)
+    temp['c8']=str(c8) 
+    temp['c9']=str(c9)
+    temp['c10']=str(c10)
+    temp['moy'] = 10 
+    ## call the models 
+
+    logging.debug("////////////////////////////////////")
+    logging.debug("Printing TEMP")
+    logging.debug(temp)
+
+
+    btn = request.POST.get('typeForm')
+    logging.debug("*****************************************************")
+    logging.debug(btn)
+    logging.debug("*****************************************************")
+
+    if btn == 'ens':
+        logging.debug('ENS CLICKED')
+        result,row, classes           =prepModel_ENS(temp)
+        logging.debug("ccccccccccccccccccccccccccccc")
+        logging.debug(classes)
+        logging.debug("I CALLED MODEL ENS")
+
+
+        ## load labels dictionnary 
+        dict = pickle.load(open("orientationSystem\dictEns.pkl", 'rb+'))
+
+        labels = []
+        for c in classes:
+            if c == 'OTH':
+                labels.append('Autres types de formation')
+            elif c == 'OthEns':
+                labels.append('Autres ENS')
+            else:
+                labels.append(dict[int(c)])
+
+
+        logging.debug(result)
+        
+    elif btn == 'med':
+        logging.debug('MED CLICKED')
+        
+        result,row, classes           =prepModel_MED(temp)
+        logging.debug("I CALLED MODEL MED")
+        logging.debug("ccccccccccccccccccccccccccccc")
+
+                ## load labels dictionnary 
+        dict = pickle.load(open("orientationSystem\dictMed.pkl", 'rb+'))
+
+        labels = []
+        for c in classes:
+            if c == 'OTH':
+                labels.append('Autres types de formation')
+            else:
+                labels.append(dict[int(c)])
+
+        logging.debug(result)
+        
+    elif btn == 'formSup':
+        logging.debug('SUP CLICKED')
+        result,row, classes   =prepModel_FormSup(temp)
+        logging.debug("I CALLED MODEL FormSup")
+        logging.debug("ccccccccccccccccccccccccccccc")
+
+                ## load labels dictionnary 
+        dict = pickle.load(open("orientationSystem\dictFormSup.pkl", 'rb+'))
+
+        labels = []
+        for c in classes:
+            if c == 'OTH':
+                labels.append('Autres types de formation')
+            else:
+                labels.append(dict[int(c)])
+
+        logging.debug(result)
+        
+    elif btn == 'formUniv':
+        logging.debug('UNIV CLICKED')
+                
+        result,row, classes =prepModel_FormUniv(temp)
+        logging.debug("I CALLED MODEL FormUniv")
+                ## load labels dictionnary 
+        dict = pickle.load(open("orientationSystem\dictFormUniv.pkl", 'rb+'))
+
+        labels = []
+        for c in classes:
+            if c == 'OTH':
+                labels.append('Autres types de formation')
+            elif c == 'OthUniv':
+                labels.append('Autres formations universitaires')
+            else:
+                labels.append(dict[int(c)])
+
+        logging.debug("ccccccccccccccccccccccccccccc")
+        logging.debug(result)
+    
+
+    else :
+        logging.debug('PREPA CLICKED')
+        result,row, classes       =prepModel_Prepa(temp)
+        logging.debug("I CALLED MODEL prep")
+        logging.debug("ccccccccccccccccccccccccccccc")
+
+                        ## load labels dictionnary 
+        dict = pickle.load(open("orientationSystem\dictPrepa.pkl", 'rb+'))
+
+        labels = []
+        for c in classes:
+            if c == 'OTH':
+                labels.append('Autres types de formation')
+            else:
+                labels.append(dict[int(c)])
+
+        
+        logging.debug(result)
+
+    """
+    ## WORKS ######################################
+
+
+
+
+
+
+
+    """
+
+
+
+
+    ## connecter les resultat a l'interface 
+
+   
+    context={'result':result, 
+                 'row':row, 
+                 'classes': labels
+                }
+        
+        ## orginal: result.html
+
+    return render(request,'evaluation_model2.html', context)

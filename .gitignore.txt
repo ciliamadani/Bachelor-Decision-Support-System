@@ -1,0 +1,6 @@
+**/model/*
+**/model/encoders/
+**/model/model_approche1/
+**/model/model_approche2/
+**/model/models/
+**/model/normalizers
