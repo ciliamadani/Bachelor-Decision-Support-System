@@ -4,7 +4,6 @@ import pandas as pd
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping,ReduceLROnPlateau
 from tensorflow.keras import layers
 def entity_embedding():
-
     num_features = ['english','french','his_geo','arabic_literature','maths','philosophy','physics',
                     'primary_module','islamic_science','MOYENNE_BAC']
     cat_features = ['c1','c2','c3','c4','c5','c6','WILAYA_BAC','SEXE','SERIE']

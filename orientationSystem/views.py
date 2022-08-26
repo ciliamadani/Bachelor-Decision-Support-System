@@ -1,21 +1,19 @@
 
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .form import NameForm
 import logging
 from .model_ml import entity_embedding
 import tensorflow as tf
-from pickle import load, dump
+from pickle import load
 from .models import Bachelier
 from django.contrib.auth.models import User, auth
-from django.contrib import messages
 from .data_prepation import prep_entity_embedding_model,create_student_dictionary
 # Create your views here.
 def index(request):
     etudiant_test = Bachelier.objects.create(matricule=171731088156,serie_bac="N03",wilaya_bac='15',
                                             moyenne_bac=15.03,sexe='FEMININ',english=14.5,
-                                            french=12,his_geo=17.5,arabic_literature=16,maths=19,
-                                            philosophy=17,primary_module=14,islamic_science=13
+                                            french=12,his_geo=17.5,arabic_literature=16,
+                                            maths=19,philosophy=17,primary_module=14,islamic_science=13
                                        )
     etudiant_test.save()
     if request.method=='POST':
@@ -24,7 +22,6 @@ def index(request):
         mdp_confirmer = request.POST["mdp_confirmer"]
         if mdp == mdp_confirmer:
             if User.objects.filter(username=matricule).exists():
-                messages.info(request, 'Matricule déjà utilsé par un autre étudiant')
                 return redirect('/')
             else :
                 user = User.objects.create_user(matricule, password=mdp)
@@ -109,7 +106,7 @@ def predict(request):
 
         # load scaler
         scaler = load(open('orientationSystem\data_preparatio_object\scaler_marks_entity_embedding.pkl', 'rb'))
-
+        
         if request.user.is_authenticated:
             matricule=request.user.username
             logging.debug(matricule)
