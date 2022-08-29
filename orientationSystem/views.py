@@ -1,4 +1,5 @@
 
+from pyexpat.errors import messages
 from django.shortcuts import render, redirect
 from .form import NameForm
 import logging
@@ -7,6 +8,8 @@ import tensorflow as tf
 from pickle import load
 from .models import Bachelier
 from django.contrib.auth.models import User, auth
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect, HttpResponse
 from .data_prepation import prep_entity_embedding_model,create_student_dictionary
 # Create your views here.
 def index(request):
@@ -38,10 +41,13 @@ def login(request):
         matricule= request.POST['matricule']
         password= request.POST['password']
         user = auth.authenticate(username=matricule,password=password)
+        logging.debug(user)
         if user is not None :
             auth.login(request,user)
+            logging.debug( Bachelier.objects.filter(matricule=matricule).exists())
             if Bachelier.objects.filter(matricule=matricule).exists():
                 etudiant = Bachelier.objects.filter(matricule=matricule).values()[0]
+                logging.debug(etudiant)
                 context = {
                 'matricule':etudiant['matricule'],
                 'moyenne_bac':etudiant['moyenne_bac'],
@@ -135,3 +141,7 @@ def predict(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+def logout(request):
+    auth.logout(request)
+    return render(request, 'login.html')

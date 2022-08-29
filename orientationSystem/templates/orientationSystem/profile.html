@@ -17,8 +17,9 @@
                 <a href=""> Profile</a> 
                 <a href=""> Choix</a>
                 <a href="/form"> Système d'orientation</a> 
-                <a href=""> connecter / déconnecter</a>
-                
+                {% if  user.is_authenticated %}
+                <a href="logout"> déconnecter</a>
+                {% endif %}
             </div>
         <div class="row">
 
