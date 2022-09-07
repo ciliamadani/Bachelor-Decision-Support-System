@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title> se connecter</title>
+
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <form class="form" id="login" method="POST">
+            {% csrf_token %}
+            <h1 class="title"> se connecter</h1>
+            <div class="form__message"></div>
+            <div class="form__input-group">
+                <input type="text" class="form__input" name="matricule" autofocus placeholder="Matricule">
+            </div>
+            <div class="form__input-group">
+                <input type="password" class="form__input" name="mdp" autofocus placeholder=" entrez le mot de passe">
+            </div>
+            <div class="form__input-group">
+                <input type="password" class="form__input" name="mdp_confirmer" autofocus placeholder=" confirmer le mot de passe">
+            </div>
+            <button class="form__button" type="submit">connecter</button>
+        </form>
+       
+    </div>
+</body>

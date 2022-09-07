@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet"   href= "{% static 'bootstrap-5.2.0-beta1-dist\css\bootstrap.min.css' %}">  
+    <title>Document</title>
+</head>
+
+
+<body>
+
+    <div class="container">
+    <main-header></main-header>
+
+
+    <div class="row" style=" margin-bottom: 5%; background-color: #009579;" > 
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #009579;"  >
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item " >
+                  <a class="nav-link" href="#" style="color: white;">Profile </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/orientationSystem/form" style="color: white;">Choix Etudiant</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link disabled" href="predict2" style="color: white;">Formations par type </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="logout" style="color: white;" >Deconnecter</a>
+
+                </li>
+              </ul>
+            </div>
+          </nav>
+    </div>
+
+    <div class="row" style="margin-bottom: 20px; margin: auto;
+    border: 1px ;
+    padding: 10px;">
+
+        
+        <div class="col-md-8 mt-1" style="margin-bottom: 20px; margin: auto;
+        border: 1px ;
+        padding: 10px;  ">
+            <div class="card mb-3 content" style="margin-bottom: 20px; margin: auto;
+            border: 1px ;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.05); ">
+                <h4 style="margin: auto;"> Les Informations De L'etudiant </h4>
+                <div class="card-body">
+                         
+                            <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                                <div class="col">
+                                    <h6>Matricule</h6> 
+                                </div>
+                                <div class="col text-secondary">
+                                   {{ matricule}}
+                                </div>
+                            </div>
+            
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Moyenne du bac</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                           {{ moyenne_bac}}
+                        </div>
+                    </div>
+            
+                            <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                                <div class="col">
+                                    <h6>Serie Bac</h6> 
+                                </div>
+                                <div class="col text-secondary">
+                                    SCIENETIFIQUE
+                                </div>
+                            </div>     
+
+                            
+
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Sexe</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{sexe}}
+                        </div>
+                    </div>
+                            
+
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Anglais</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{english}}
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Francais</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{french}}
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>His_geo</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{his_geo}}
+                        </div>
+                    </div>
+                      
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Arabe</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{arabic_literature}}
+                        </div>
+                    </div>  
+                      
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Math</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{maths}}
+                        </div>
+                    </div>  
+                      
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Philo</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{philosophy}}
+                        </div>
+                    </div>  
+                    
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Physique</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{physics}}
+                        </div>
+                    </div>  
+                    
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Module primaire</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{primary_module}}
+                        </div>
+                    </div>  
+                        
+                    <div class="row" style="margin: auto;border: 1px ;padding: 10px; width: 50%; ">
+                        <div class="col">
+                            <h6>Science islamique</h6> 
+                        </div>
+                        <div class="col text-secondary">
+                            {{islamic_science}}
+                        </div>
+                    </div>  
+                       
+                </div>    
+            </div>
+
+        </div>  
+        </div>
+
+        
+    <!------------------------- FOOTER -----------------------
+    <main-footer></main-footer>
+    ------------------------- FOOTER ----------------------->
+            <!-- FOOTER -----------------------------------------------------------------------------> 
+            <div class="row">
+                <footer class="container text-center text-lg-start bg-light text-muted" style="border-radius: 20px; margin-top: 20px;">
+                <!-- Section: Social media -->
+                <section
+                  class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+                >
+          
+              
+                  <!-- Right -->
+                  <div>
+                    <a href="" class="me-4 text-reset">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="" class="me-4 text-reset">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="me-4 text-reset">
+                      <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="me-4 text-reset">
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="" class="me-4 text-reset">
+                      <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="" class="me-4 text-reset">
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
+                  <!-- Right -->
+                </section>
+                <!-- Section: Social media -->
+              
+                <!-- Section: Links  -->
+                <section class="">
+                  <div class="container text-center text-md-start mt-5">
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+                      <!-- Grid column -->
+  
+                      <!-- Grid column -->
+                      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                          Liens Utiles
+                        </h6>
+                        <p>
+                          <a href="https://www.mesrs.dz/index.php/fr/accueil/" class="text-reset">MESRS</a>
+                        </p>
+                      </div>
+                      <!-- Grid column -->
+              
+                      <!-- Grid column -->
+                      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                          Contact
+                        </h6>
+      
+                        <p><a href="mailto:ciliia.madanii@gmail.com">@mail1</a> 
+                        </p>
+                        <p> <a href="mailto:ciliia.madanii@gmail.com">@mail2</a> </p>
+                      </div>
+                      <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
+                  </div>
+                </section>
+                <!-- Section: Links  -->
+              
+                <!-- Copyright -->
+                <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                  © 2022 Copyright:
+                  <a class="text-reset fw-bold" href=#>site.com</a>
+                </div>
+                <!-- Copyright -->
+              </footer>
+          
+              </div>
+            
+    
+    </div>
+</div>
+</body>
+</html>
